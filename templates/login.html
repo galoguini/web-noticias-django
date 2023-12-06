@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="(% static '../static/css/load.css'%)">
+
+<div class="container">
+    <div class="login-form">
+        <h2 class="text-center">Iniciar Sesión</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.errors }}
+            <div class="mb-3">
+                <label for="{{ form.username.id_for_label }}" class="form-label">Nombre de Usuario o Correo Electrónico</label>
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña</label>
+                {{ form.password }}
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

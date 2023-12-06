@@ -1,0 +1,11 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    max-width: 400px;
+    width: 100%;
+}
