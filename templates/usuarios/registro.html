@@ -1,17 +1,29 @@
 {% extends 'base.html' %}
 
-{% load static %} 
-<!-- carga la carpeta static -->
+{% load static %}
 
 {% block content %}
 
-    <!-- <div>
+    {% comment %} <div>
         <form action="" method="post">{% csrf_token %}         
         <h3 class="mb-4">Registro</h3>
         {{form.as_p}}
         <p><input type="submit"value="Confirmar"></p>
         </form>
-    </div> -->
+    </div> {% endcomment %}
+
+    <header class="masthead" style="background-image: url('../static/img/post-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>REGISTRO</h1>
+                        <span class="subheading">Una pagina hecha por el Grupo 6 del Informatorio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <div class="container mt-5">
         <form action="" method="post" class="col-md-6 mx-auto">

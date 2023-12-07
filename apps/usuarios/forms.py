@@ -15,5 +15,3 @@ class RegistroForm(UserCreationForm):
             'password1',
             'password2'
         ]
-
-# preguntarle a franco q es un forms
