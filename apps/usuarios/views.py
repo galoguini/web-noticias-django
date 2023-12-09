@@ -12,3 +12,6 @@ class registro(CreateView):
 	form_class = RegistroForm
 	success_url = reverse_lazy('login')
 	template_name = 'usuarios/registro.html'
+
+def perfil(request):
+	return render(request, 'usuarios/perfil.html')
