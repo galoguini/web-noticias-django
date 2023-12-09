@@ -10,7 +10,7 @@ def login(request):
 class registro(CreateView):
 	#FORMULARIO DJANGO
 	form_class = RegistroForm
-	success_url = reverse_lazy('login')
+	success_url = reverse_lazy('usuarios:login')
 	template_name = 'usuarios/registro.html'
 
 def perfil(request):
