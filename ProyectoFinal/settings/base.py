@@ -38,6 +38,7 @@ INSTALLED_APPS = [ #ACA PONE LAS APPS
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.noticias',
+    'apps.usuarios',
 ]
 
 MIDDLEWARE = [
