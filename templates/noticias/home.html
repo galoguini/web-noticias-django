@@ -6,4 +6,19 @@
 
 <h1>Estamos en el Home de noticias</h1>
 
+{% for noticia in noticias %}
+    <div class="card mb-4">
+        <img class="card-img-top" src="{{ noticia.imagen.url }}" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title">{{ noticia.titulo }}</h2>
+            <p class="card-text">{{ noticia.contenido }}</p>
+            <a href="#" class="btn btn-primary">Leer mas &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+            Publicado el {{ noticia.fecha_publicacion }}
+            <a href="#">Start Bootstrap</a>
+        </div>
+    </div>
+{% endfor %}
+
 {% endblock content %}
