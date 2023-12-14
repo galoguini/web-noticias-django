@@ -45,8 +45,20 @@
                 </div>
             </div>
         </nav>
-        {% block content %}
             <!-- Page Header-->
+            <header class="masthead" style="padding-top: 75px; padding-right: 0; padding-bottom: 50px; padding-left: 0; background-image: {% block imagen_fondo %}{% endblock %};">
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="site-heading">
+                                <h1>{% block titulo %}{% endblock %}</h1>
+                                <span class="subheading">{% block subtitulo %}{% endblock %}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        {% block content %}
             <!-- Main Content-->
         {% endblock content %}
         <!-- Footer-->
