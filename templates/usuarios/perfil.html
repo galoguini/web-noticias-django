@@ -2,24 +2,12 @@
 
 {% load static %}
 
-{% block imagen_fondo %}
-    url('{% static 'img/post-sample-bg.jpg' %}')
-{% endblock %}
-
-{% block titulo %}
-    {{user.username}}
-{% endblock %}
-
-{% block subtitulo %}
-    Una pagina hecha por el Grupo 6 del Informatorio
-{% endblock %}
-
 {% block content %}
 
 <h1>Estamos en tu perfil</h1>
 
 {% if user.is_superuser %}
-<a href="{% url 'admin:index' %}" class="btn btn-primary">ir al admin de django</a>
+<a href="{% url 'admin:index' %}" class="btn btn-primary" target="_blank">ir al admin de django</a>
 {% endif %}
 
 {% endblock content %}
