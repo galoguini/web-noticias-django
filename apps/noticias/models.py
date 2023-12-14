@@ -20,6 +20,7 @@ class Noticia(models.Model):
     creado = models.DateTimeField(auto_now_add=True)
     modificado = models.DateTimeField(auto_now=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
+    usuario = models.ForeignKey('auth.User', on_delete=models.PROTECT)
 
     class Meta:
         verbose_name = 'noticia'
