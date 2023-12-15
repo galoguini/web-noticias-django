@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 
-# Create your views here.
+from .models import Noticia
 
-def home_noticias(request):
-    return render(request, 'noticias/home.html')
+class Home_Noticias_clase(ListView):
+    model = Noticia
+    template_name = 'noticias/home.html'
+    context_object_name = 'noticias'
+    

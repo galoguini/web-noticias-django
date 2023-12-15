@@ -4,5 +4,5 @@ from . import views
 app_name = 'noticias' # nombre app:nombre path
 
 urlpatterns = [
-    path('', views.home_noticias, name='home_noticias'),
+    path('', views.Home_Noticias_clase.as_view(), name='home_noticias'),
 ]
