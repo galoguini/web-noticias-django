@@ -2,44 +2,39 @@
 
 {% load static %}
 
+{% block estilos %}
+
+<link rel="stylesheet" href="{% static 'css/u_login.css' %}">
+
+{% endblock estilos %}
+
 {% block content %}
 
-<header class="masthead" style="background-image: url('../static/img/post-bg.jpg')">
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="site-heading">
-                    <h1>LOGIN</h1>
-                    <span class="subheading">Una pagina hecha por el Grupo 6 del Informatorio</span>
+<section class="login-section gradient-custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card login-form">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.errors }}
+                            <div class="mb-3">
+                                <label for="{{ form.username.id_for_label }}" class="form-label">Usuario</label>
+                                {{ form.username }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña</label>
+                                {{ form.password }}
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</header>
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card login-form">
-                <div class="card-body">
-                    <h2 class="text-center mb-4">Iniciar Sesión</h2>
-                    <form method="POST">
-                        {% csrf_token %}
-                        {{ form.errors }}
-                        <div class="mb-3">
-                            <label for="{{ form.username.id_for_label }}" class="form-label">Nombre de Usuario o Correo Electrónico</label>
-                            {{ form.username }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña</label>
-                            {{ form.password }}
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</section>
 
 {% endblock content %}

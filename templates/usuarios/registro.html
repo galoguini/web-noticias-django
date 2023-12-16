@@ -2,75 +2,83 @@
 
 {% load static %}
 
+{% block estilos %}
+
+<link rel="stylesheet" href="{% static 'css/u_registro.css' %}">
+
+{% endblock estilos %}
+
+
 {% block content %}
 
-    {% comment %} <div>
-        <form action="" method="post">{% csrf_token %}         
-        <h3 class="mb-4">Registro</h3>
-        {{form.as_p}}
-        <p><input type="submit"value="Confirmar"></p>
-        </form>
-    </div> {% endcomment %}
+<section class="registro-section gradient-custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card registro-form">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Registro</h3>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <h3 class="mb-4">Registro</h3>
 
-    <header class="masthead" style="background-image: url('../static/img/post-bg.jpg')">
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="site-heading">
-                        <h1>REGISTRO</h1>
-                        <span class="subheading">Una pagina hecha por el Grupo 6 del Informatorio</span>
+                            <div class="mb-3">
+                                {{ form.first_name.label_tag }}
+                                {{ form.first_name }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form.last_name.label_tag }}
+                                {{ form.last_name }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form.username.label_tag }}
+                                {{ form.username }}
+                                <small id="usernameHelp" class="form-text text-muted">
+                                    Obligatorio. Longitud máxima de 150 caracteres. Solo puede estar formado por letras,
+                                    números y los caracteres @/./+/-/_.
+                                </small>
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form.password1.label_tag }}
+                                {{ form.password1 }}
+                                <small id="passwordHelp" class="form-text text-muted">
+                                    Su contraseña debe contener por lo menos 8 caracteres y no puede ser similar a otros
+                                    componentes de su información personal. No puede ser una contraseña común y no puede
+                                    estar formada exclusivamente por números.
+                                </small>
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form.password2.label_tag }}
+                                {{ form.password2 }}
+                                <small id="password2Help" class="form-text text-muted">
+                                    Introduzca la misma contraseña nuevamente, para poder verificarla.
+                                </small>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
-
-    <div class="container mt-5">
-        <form action="" method="post" class="col-md-6 mx-auto">
-            {% csrf_token %}         
-            <h3 class="mb-4">Registro</h3>
-            
-            <div class="mb-3">
-                {{ form.first_name.label_tag }}
-                {{ form.first_name }}
-            </div>
-    
-            <div class="mb-3">
-                {{ form.last_name.label_tag }}
-                {{ form.last_name }}
-            </div>
-    
-            <div class="mb-3">
-                {{ form.username.label_tag }}
-                {{ form.username }}
-                <small id="usernameHelp" class="form-text text-muted">
-                    Obligatorio. Longitud máxima de 150 caracteres. Solo puede estar formado por letras, números y los caracteres @/./+/-/_.
-                </small>
-            </div>
-    
-            <div class="mb-3">
-                {{ form.email.label_tag }}
-                {{ form.email }}
-            </div>
-    
-            <div class="mb-3">
-                {{ form.password1.label_tag }}
-                {{ form.password1 }}
-                <small id="passwordHelp" class="form-text text-muted">
-                    Su contraseña debe contener por lo menos 8 caracteres y no puede ser similar a otros componentes de su información personal. No puede ser una contraseña común y no puede estar formada exclusivamente por números.
-                </small>
-            </div>
-    
-            <div class="mb-3">
-                {{ form.password2.label_tag }}
-                {{ form.password2 }}
-                <small id="password2Help" class="form-text text-muted">
-                    Introduzca la misma contraseña nuevamente, para poder verificarla.
-                </small>
-            </div>
-    
-            <button type="submit" class="btn btn-primary">Confirmar</button>
-        </form>
     </div>
+</section>
 
 {% endblock content %}
+
+{% comment %} <div>
+    <form action="" method="post">{% csrf_token %}
+        <h3 class="mb-4">Registro</h3>
+        {{form.as_p}}
+        <p><input type="submit" value="Confirmar"></p>
+    </form>
+</div> {% endcomment %}

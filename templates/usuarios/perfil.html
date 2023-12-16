@@ -4,19 +4,10 @@
 
 {% block content %}
 
-<header class="masthead" style="background-image: url('../static/img/post-bg.jpg')">
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="site-heading">
-                    <h1>{{user.username}}</h1>
-                    <span class="subheading">Una pagina hecha por el Grupo 6 del Informatorio</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
 <h1>Estamos en tu perfil</h1>
+
+{% if user.is_superuser %}
+<a href="{% url 'admin:index' %}" class="btn btn-primary" target="_blank">ir al admin de django</a>
+{% endif %}
 
 {% endblock content %}
