@@ -1,3 +1,5 @@
+/* css utilizado en login y registro (logreg) */
+
 .gradient-custom {
     /* fallback for old browsers */
     background: #6a11cb;
@@ -9,14 +11,26 @@
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
 }
 
-.registro-section {
+.logreg-section {
     margin-top: 0;
-    /* Ajusta este valor a 0 */
-    padding-bottom: 500px;
+    padding-bottom: 300px;
 }
 
-.registro-form {
-    margin-top: 150px;
+.logreg-form {
+    margin-top: 75px;
     border-radius: 20px;
-    /* Añade bordes redondeados a la tarjeta de inicio de sesión */
+}
+
+#id_email,
+#id_password,
+#id_password2,
+#id_username,
+#id_first_name,
+#id_last_name,
+#id_password1 {
+    width: 75%;
+}
+
+.error-card {
+    border-radius: 20px;
 }
