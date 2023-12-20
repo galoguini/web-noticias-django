@@ -44,7 +44,7 @@
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'home' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">Acerca de</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
-                            href="{% url 'noticias:home_noticias' %}">Sample Post</a></li>
+                            href="{% url 'noticias:home_noticias' %}">Noticias</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
@@ -106,6 +106,7 @@
                                     <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
+
                         </li>
                     </ul>
                     <div class="small text-center text-muted fst-italic">Copyright &copy; Informatorio 2023</div>
