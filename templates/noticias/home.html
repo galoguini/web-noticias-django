@@ -2,23 +2,38 @@
 
 {% load static %}
 
+{% block estilos %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+{% endblock estilos %}
+
 {% block content %}
 
 <h1>Estamos en el Home de noticias</h1>
 
+{% if user.is_authenticated %}
+<a href="{% url 'noticias:cargar_noticia' %}" class="btn btn-primary">CREAR NOTICIA</a>
+{% endif %}
+
 {% for noticia in noticias %}
     <div class="card mb-4">
-        <img class="card-img-top" src="{{ noticia.imagen.url }}" alt="Card image cap">
+        <!-- Utilizando estilos en línea para reducir el tamaño de la imagen -->
+        <img class="card-img-top" src="{{ noticia.imagen.url }}" alt="Card image cap" style="max-width: 300px; max-height: 200px;">
         <div class="card-body">
             <h2 class="card-title">{{ noticia.titulo }}</h2>
             <p class="card-text">{{ noticia.contenido }}</p>
-            <a href="#" class="btn btn-primary">Leer mas &rarr;</a>
+            <a href="{% url 'noticias:detalle_noticia' noticia.pk %}" class="btn btn-primary">Leer más &rarr;</a>
+            {% if user.is_authenticated and noticia.usuario == user %}
+                <a href="{% url 'noticias:modificar_noticia' noticia.pk %}">Editar</a>
+                <a href="{% url 'noticias:borrar_noticia' noticia.pk %}">Borrar</a>
+            {% endif %}
         </div>
         <div class="card-footer text-muted">
-            Publicado el {{ noticia.fecha_publicacion }}
-            <a href="#">Start Bootstrap</a>
+            Publicado el {{ noticia.creado }}
         </div>
     </div>
 {% endfor %}
+
 
 {% endblock content %}

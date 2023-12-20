@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h1>Detalle de {{noticia.titulo}}</h1>
+
+    <div class="card mb-4">
+        <img class="card-img-top" src="{{ noticia.imagen.url }}" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title">{{ noticia.titulo }}</h2>
+            <p class="card-text">{{ noticia.contenido }}</p>
+        </div>
+        <div class="card-footer text-muted">
+            {% if noticia.modificado %}
+                {% if noticia.modificado != noticia.creado %}
+                    Modificado el {{ noticia.modificado }}
+                {% else %}
+                    Publicado el {{ noticia.creado }}
+                {% endif %}
+            {% else %}
+                Publicado el {{ noticia.creado }}
+            {% endif %}
+        </div>
+        
+    </div>
+
+{% endblock content %}
