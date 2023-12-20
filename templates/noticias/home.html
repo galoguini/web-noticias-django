@@ -24,13 +24,9 @@
             <h2 class="card-title">{{ noticia.titulo }}</h2>
             <p class="card-text">{{ noticia.contenido }}</p>
             <a href="{% url 'noticias:detalle_noticia' noticia.pk %}" class="btn btn-primary">Leer más &rarr;</a>
-            {% if user.is_authenticated and noticia.usuario == user %}
-                <a href="{% url 'noticias:modificar_noticia' noticia.pk %}">Editar</a>
-                <a href="{% url 'noticias:borrar_noticia' noticia.pk %}">Borrar</a>
-            {% endif %}
         </div>
         <div class="card-footer text-muted">
-            Publicado el {{ noticia.creado }}
+            Publicado el {{ noticia.creado }} por {{ noticia.usuario }}
         </div>
     </div>
 {% endfor %}

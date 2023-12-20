@@ -4,26 +4,30 @@
 
 {% block content %}
 
-<h1>Detalle de {{noticia.titulo}}</h1>
+<h1>Detalle de {{ noticia.titulo }}</h1>
 
-    <div class="card mb-4">
-        <img class="card-img-top" src="{{ noticia.imagen.url }}" alt="Card image cap">
-        <div class="card-body">
-            <h2 class="card-title">{{ noticia.titulo }}</h2>
-            <p class="card-text">{{ noticia.contenido }}</p>
-        </div>
-        <div class="card-footer text-muted">
-            {% if noticia.modificado %}
-                {% if noticia.modificado != noticia.creado %}
-                    Modificado el {{ noticia.modificado }}
-                {% else %}
-                    Publicado el {{ noticia.creado }}
-                {% endif %}
-            {% else %}
-                Publicado el {{ noticia.creado }}
-            {% endif %}
-        </div>
-        
+<div class="card mb-4">
+    <img class="card-img-top" src="{{ noticia.imagen.url }}" alt="Card image cap">
+    <div class="card-body">
+        <h2 class="card-title">{{ noticia.titulo }}</h2>
+        <p class="card-text">{{ noticia.contenido }}</p>
     </div>
+    {% if user.is_authenticated and noticia.usuario == user %}
+        <a href="{% url 'noticias:modificar_noticia' noticia.pk %}" class="btn btn-primary w-25" style="margin-top: 10px;">Editar</a>
+        <a href="{% url 'noticias:borrar_noticia' noticia.pk %}" class="btn btn-danger w-25" style="margin-top: 10px; margin-bottom: 10px">Borrar</a>
+    {% endif %}
+    <div class="card-footer text-muted">
+        {% if noticia.modificado %}
+            {% if noticia.modificado != noticia.creado %}
+                Modificado el {{ noticia.modificado }} por {{ noticia.usuario }}
+            {% else %}
+                Publicado el {{ noticia.creado }} por {{ noticia.usuario }}
+            {% endif %}
+        {% else %}
+            Publicado el {{ noticia.creado }} por {{ noticia.usuario }}
+        {% endif %}
+    </div>
+</div>
+
 
 {% endblock content %}

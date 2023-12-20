@@ -14,7 +14,7 @@ class Home_Noticias_clase(ListView):
     model = Noticia
     template_name = 'noticias/home.html'
     context_object_name = 'noticias'
-    
+
 class Cargar_noticia(CreateView):
     model = Noticia
     template_name = 'noticias/cargar_noticia.html'
@@ -24,14 +24,6 @@ class Cargar_noticia(CreateView):
     def form_valid(self, form):
         form.instance.usuario = self.request.user  # Asigna el usuario actual como el creador de la noticia
         return super().form_valid(form)
-
-'''''
-class Modificar_noticia(UpdateView):
-    model = Noticia
-    template_name = 'noticias/modificar_noticia.html'
-    form_class = Formulario_Modificar_Noticia
-    success_url = reverse_lazy('noticias:home_noticias')
-'''
 
 def Modificar_noticia(request, pk):
     noticia = get_object_or_404(Noticia, pk=pk)
