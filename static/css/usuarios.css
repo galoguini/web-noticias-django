@@ -1,0 +1,56 @@
+.profile-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 100%;
+    margin: 0;
+}
+
+.profile-card img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+}
+
+.info-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 100%;
+    margin: 0;
+}
+
+/* css utilizado en login y registro (logreg) */
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+
+.card-section {
+    margin-top: 0;
+    padding-bottom: 300px;
+}
+
+.card-form {
+    margin-top: 75px;
+    border-radius: 20px;
+}
+
+#id_email,
+#id_password,
+#id_password2,
+#id_username,
+#id_first_name,
+#id_last_name,
+#id_password1 {
+    width: 75%;
+}
+
+.error-card {
+    border-radius: 20px;
+}
