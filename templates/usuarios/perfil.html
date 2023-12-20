@@ -2,18 +2,106 @@
 
 {% load static %}
 
+{% block estilos %}
+
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
+
+{% endblock estilos %}
+
 {% block content %}
 
 {% if not user.is_authenticated %}
 <a href="{% url 'usuarios:login' %}" class="btn btn-primary" target="_blank">logueate para ver t</a>
 {% else %}
 
-<h1>Estamos en tu perfil</h1>
+<section class="card-section gradient-custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card card-form profile-card">
+                    <div class="card-body">
+                        <h2 class="text-left mb-4">Perfil de "{{user.username}}"</h2>
 
-{% if user.is_superuser %}
-<a href="{% url 'admin:index' %}" class="btn btn-primary" target="_blank">ir al admin de django</a>
-{% endif %}
+                        <div id="etapa1">
+                            <div class="mb-3">
+                                <div class="profile-picture">
+                                    <img src="{{ user.userprofile.profile_picture.url }}" alt="Imagen de perfil"
+                                        class="img-fluid rounded-circle mb-3">
+                                </div>
+                            </div>
+                            <button id="editarFoto" class="btn btn-primary">Editar foto de perfil</button>
+                            {% if user.is_superuser %}
+                            <a href="{% url 'admin:index' %}" class="btn btn-primary" target="_blank">ir al admin de
+                                django</a>
+                            {% endif %}
+                        </div>
+
+                        <div id="etapa2" style="display: none;">
+                            <form method="post" action="{% url 'usuarios:update_foto_perfil' %}" enctype="multipart/form-data" class="form-group">
+                                {% csrf_token %}
+                                <button type="submit" id="submitFoto" class="btn btn-primary w-50" disabled>Subir foto</button>
+                                <button type="button" id="cancelar" class="btn btn-danger" >Cancelar</button>
+                                <div class="form-group">
+                                    <input id="foto" type="file" name="profile_picture" class="form-control-file d-none" onchange="checkFile()">
+                                    <button type="button" class="btn btn-warning" style="margin-top: 10px;" onclick="document.getElementById('foto').click()">Seleccionar archivo</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class="card info-card card-form">
+                <div class="card-body">
+                    <!-- Etapa 1 -->
+                    <div id="infoEtapa1">
+                        <h3 class="text-center mb-4">Información del Perfil</h3>
+                        <p><strong>Usuario:</strong> {{ user.username }}</p>
+                        <p><strong>Nombre:</strong> {{ user.first_name }}</p>
+                        <p><strong>Apellido:</strong> {{ user.last_name }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <button type="button" class="btn btn-primary w-100" style="margin-top: 10px;" onclick="mostrarEtapa2()">Editar Información</button>
+                    </div>
+            
+                    <!-- Etapa 2 -->
+                    <div id="infoEtapa2" style="display: none;">
+                        <h3 class="text-center mb-4">Editar Información</h3>
+                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Nombre</a>
+                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Email</a>
+                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Contraseña</a>
+                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Usuario</a>
+                        <button type="button" class="btn btn-danger" style="margin-top: 10px;" onclick="mostrarEtapa1()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- <div class="col-md-6">
+                <div class="card info-card card-form">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Información del Perfil</h3>
+                        <p><strong>Usuario:</strong> {{ user.username }}</p>
+                        <p><strong>Nombre:</strong> {{ user.first_name }}</p>
+                        <p><strong>Apellido:</strong> {{ user.last_name }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Nombre</a>
+                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Email</a>
+                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Contraseña</a>
+                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Usuario</a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</section>
+
+
+
 
 {% endif %}
 
 {% endblock content %}
+
+{% block scripts %}
+
+<script src="{% static 'js/usuarios.js' %}"></script>
+
+{% endblock scripts %}

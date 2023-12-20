@@ -4,22 +4,30 @@
 
 {% block estilos %}
 
-<link rel="stylesheet" href="{% static 'css/u_logreg.css' %}">
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
 
 {% endblock estilos %}
 
 {% block content %}
 
-<section class="logreg-section gradient-custom">
+<section class="card-section gradient-custom">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card logreg-form">
+                <div class="card card-form">
                     <div class="card-body">
                         <h2 class="text-center mb-4">Iniciar Sesión</h2>
                         <form method="POST">
                             {% csrf_token %}
-                            {{ form.errors }}
+
+                            {% if form.errors %}
+                            <div class="card error-card">
+                                <div class="card-body">
+                                    <p class="card-text">🚫Usuario o contraseña son incorrectos.</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
                             <div class="mb-3">
                                 <div class="form-label">
                                     <label for="{{ form.username.id_for_label }}">Usuario</label>
@@ -36,7 +44,10 @@
                                     {{ form.password }}
                                 </div>
                             </div>
-                            <button type="submit" class="btn w-100" style="background-color: #008000; color: white;">Iniciar Sesión</button>
+                            <button type="submit" class="btn btn-success w-100">Iniciar Sesión</button>
+                            {% if form.errors %}
+                            <a href="{% url 'usuarios:registro_usuario' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Quiero crear una cuenta</a>
+                            {% endif %}
                         </form>
                     </div>
                 </div>

@@ -4,18 +4,18 @@
 
 {% block estilos %}
 
-<link rel="stylesheet" href="{% static 'css/u_logreg.css' %}">
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
 
 {% endblock estilos %}
 
 
 {% block content %}
 
-<section class="logreg-section gradient-custom">
+<section class="card-section gradient-custom">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card logreg-form">
+                <div class="card card-form">
                     <div class="card-body">
                         <h3 class="text-center mb-4">Registro</h3>
                         <form action="" method="post">
@@ -109,7 +109,6 @@
                                             CONDICIONES</a>
                                     </label>
                                 </div>
-
                             </div>
 
                             <button type="button" class="btn btn-primary" id="siguiente">Continuar</button>
@@ -130,6 +129,6 @@
 
 {% block scripts %}
 
-<script src="{% static 'js/u_reg.js' %}"></script>
+<script src="{% static 'js/usuarios.js' %}"></script>
 
 {% endblock scripts %}
