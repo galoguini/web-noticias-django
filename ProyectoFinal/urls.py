@@ -23,4 +23,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('noticias/', include('apps.noticias.urls')),
     path('usuarios/', include('apps.usuarios.urls')),
+    path('about/', views.about, name="about"),
+    path('contacto/', include('apps.contacto.urls')),
+    path('contacto/', views.contacto, name='contacto'),
 ]

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block estilos %}
+
+<link rel="stylesheet" href="{% static 'css/c_about.css' %}">
+
+{% endblock estilos %}
+
+{% block content %}
+
+<h1> Estamos en el Acerca de </h1>
+<section class="about-section">
+    <h2>Finalidad de la página</h2>
+    <p>Con este proyecto buscamos que más personas puedan conocer y promover emprendimientos del Chaco.</p>
+</section>
+<section class="about-section">
+    <h2>Nuestra Historia</h2>
+    <p>Somos un grupo de estudiantes de la Comisión 1 del Informatorio en Chaco creando su primera página web.</p>
+</section>
+
+<section class="about-section">
+    <h2>Nuestro Equipo</h2>
+    <p>Integrantes:</p>
+</section>
+
+<!-- Podemos agregar más secciones según sea necesario -->
+
+
+<footer>
+    <p>Contacto: Si quieres contactarte con nosotros puedes visitar nuestra página de contacto.
+    </p>
+        <a href="{% url 'apps.contacto:contacto' %}" class="btn btn-primary" >Ir a contacto</a>
+    
+</footer>
+
+
+
+
+{% endblock content %}
