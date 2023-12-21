@@ -5,6 +5,66 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from .models import UserProfile
 
+class EditarContraseñaForm(forms.ModelForm):
+    password = forms.CharField(
+        widget=forms.PasswordInput,
+        error_messages={
+            'required': '⚠️Este campo es requerido.',
+        }
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput,
+        error_messages={
+            'required': '⚠️Este campo es requerido.',
+        }
+    )
+
+    class Meta:
+        model = User
+        fields = ['password', 'password2']
+
+    def clean_password2(self):
+        password = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('password2')
+        if password != password2:
+            raise ValidationError('⚠️Las contraseñas no coinciden.')
+        return password2
+
+class EditarUsuarioForm(forms.ModelForm):
+    username = forms.CharField(
+        error_messages={
+            'required': '⚠️Este campo es requerido.',
+        }
+    )
+
+    class Meta:
+        model = User
+        fields = ['username']
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if User.objects.filter(username=username).exists():
+            raise ValidationError('⚠️El nombre de usuario ya existe.')
+        return username
+
+class EditarEmailForm(forms.ModelForm):
+    email = forms.EmailField(
+        error_messages={
+            'required': '⚠️Este campo es requerido.',
+            'invalid': '⚠️Introduzca una dirección de email válida.',
+        }
+    )
+
+    class Meta:
+        model = User
+        fields = ['email']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')    
+        if User.objects.filter(email=email).exists():
+            raise ValidationError('⚠️Ya existe un usuario con ese correo electrónico.')
+        return email
+
 class EditarNombreForm(forms.ModelForm):
     class Meta:
         model = User

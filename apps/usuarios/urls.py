@@ -12,7 +12,7 @@ urlpatterns = [
     path('perfil/', views.perfil, name="perfil"),
     path('perfil/foto/', update_foto_perfil, name='update_foto_perfil'),
     path('perfil/editarNombre/', views.editar_nombre, name="editar_nombre"),
-    # path('perfil/editarContraseña/', views.editar_contraseña, name="editar_contraseña"),
-    # path('perfil/editarUsuario/', views.editar_usuario, name="editar_usuario"),
-    # path('perfil/editarEmail/', views.editar_email, name="editar_email"),
+    path('perfil/editarContraseña/', views.editar_contraseña, name="editar_contraseña"),
+    path('perfil/editarUsuario/', views.editar_usuario, name="editar_usuario"),
+    path('perfil/editarEmail/', views.editar_email, name="editar_email"),
 ]
