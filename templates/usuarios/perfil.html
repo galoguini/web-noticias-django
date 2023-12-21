@@ -25,7 +25,7 @@
                         <div id="etapa1">
                             <div class="mb-3">
                                 <div class="profile-picture">
-                                    <img src="{{ user.userprofile.profile_picture.url }}" alt="Imagen de perfil"
+                                    <img src="{{ user.userprofile.get_foto_perfil }}" alt="Imagen de perfil"
                                         class="img-fluid rounded-circle mb-3">
                                 </div>
                             </div>
@@ -66,9 +66,9 @@
                     <div id="infoEtapa2" style="display: none;">
                         <h3 class="text-center mb-4">Editar Información</h3>
                         <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Nombre</a>
-                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Email</a>
-                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Contraseña</a>
-                        <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Usuario</a>
+                        <a href="{% url 'usuarios:editar_email' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Email</a>
+                        <a href="{% url 'usuarios:editar_contraseña' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Contraseña</a>
+                        <a href="{% url 'usuarios:editar_usuario' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar Usuario</a>
                         <button type="button" class="btn btn-danger" style="margin-top: 10px;" onclick="mostrarEtapa1()">Cancelar</button>
                     </div>
                 </div>

@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             {% endif %}
-                            
+
                             <div class="mb-3">
                                 <div class="form-label">
                                     <label for="{{ form.username.id_for_label }}">Usuario</label>
@@ -46,7 +46,8 @@
                             </div>
                             <button type="submit" class="btn btn-success w-100">Iniciar Sesión</button>
                             {% if form.errors %}
-                            <a href="{% url 'usuarios:registro_usuario' %}" class="btn btn-primary w-100" style="margin-top: 10px;">Quiero crear una cuenta</a>
+                            <a href="{% url 'usuarios:registro_usuario' %}" class="btn btn-primary w-100"
+                                style="margin-top: 10px;">Quiero crear una cuenta</a>
                             {% endif %}
                         </form>
                     </div>
