@@ -4,67 +4,119 @@
 
 {% block estilos %}
 
-<link rel="stylesheet" href="{% static 'css/u_registro.css' %}">
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
 
 {% endblock estilos %}
 
 
 {% block content %}
 
-<section class="registro-section gradient-custom">
+<section class="card-section gradient-custom">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card registro-form">
+                <div class="card card-form">
                     <div class="card-body">
                         <h3 class="text-center mb-4">Registro</h3>
                         <form action="" method="post">
                             {% csrf_token %}
-                            <h3 class="mb-4">Registro</h3>
 
-                            <div class="mb-3">
-                                {{ form.first_name.label_tag }}
-                                {{ form.first_name }}
+                            {% if form.errors %}
+                            <div class="card error-card">
+                                <div class="card-body">
+                                    <p class="card-text">🚫Por favor, revisa los campos e intenta nuevamente.</p>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <div id="paso1">
+                                <div class="mb-3">
+                                    <div class="form-label">
+                                        <label for="{{ form.first_name.id_for_label }}">Nombre</label>
+                                    </div>
+                                    <div class="form-field">{{ form.first_name }}</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label">
+                                        <label for="{{ form.last_name.id_for_label }}">Apellido</label>
+                                    </div>
+                                    <div class="form-field">{{ form.last_name }}</div>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                {{ form.last_name.label_tag }}
-                                {{ form.last_name }}
+                            <div id="paso2" style="display: none;">
+                                <div class="mb-3">
+                                    <div class="form-label">
+                                        <label for="{{ form.username.id_for_label }}">Usuario</label>
+                                    </div>
+                                    {% if form.username.errors %}
+                                    <div class="alert alert-danger">{{ form.username.errors|striptags }}</div>
+                                    {% endif %}
+                                    <div class="form-field">{{ form.username }}</div>
+                                    <small id="usernameHelp" class="form-text text-muted">
+                                        Obligatorio. Longitud máxima de 150 caracteres. Solo puede estar formado por
+                                        letras,
+                                        números y los caracteres @/./+/-/_.
+                                    </small>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label">
+                                        <label for="{{ form.email.id_for_label }}">Email</label>
+                                    </div>
+                                    {% if form.email.errors %}
+                                    <div class="alert alert-danger">{{ form.email.errors|striptags }}</div>
+                                    {% endif %}
+                                    <div class="form-field">{{ form.email }}</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label">
+                                        <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+                                    </div>
+                                    <div class="form-field">{{ form.password1 }}</div>
+                                    <small id="passwordHelp" class="form-text text-muted">
+                                        Su contraseña debe contener por lo menos 8 caracteres y no puede ser similar
+                                        a
+                                        otros
+                                        componentes de su información personal. No puede ser una contraseña común y
+                                        no
+                                        puede
+                                        estar formada exclusivamente por números.
+                                    </small>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-label">
+                                        <label for="{{ form.password2.id_for_label }}">Confirmación de
+                                            contraseña</label>
+                                    </div>
+                                    {% if form.password2.errors %}
+                                    <div class="alert alert-danger">{{ form.password2.errors|striptags }}</div>
+                                    {% endif %}
+                                    <div class="form-field">{{ form.password2 }}</div>
+                                    <small id="password2Help" class="form-text text-muted">
+                                        Introduzca la misma contraseña nuevamente, para poder verificarla.
+                                    </small>
+                                </div>
+
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="terms" required>
+                                    <label class="form-check-label" for="terms">
+                                        He leído y acepto los <a href="https://youtu.be/dQw4w9WgXcQ?si=1WZj97Lq9x4gs932"
+                                            target="_blank">TÉRMINOS Y
+                                            CONDICIONES</a>
+                                    </label>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                {{ form.username.label_tag }}
-                                {{ form.username }}
-                                <small id="usernameHelp" class="form-text text-muted">
-                                    Obligatorio. Longitud máxima de 150 caracteres. Solo puede estar formado por letras,
-                                    números y los caracteres @/./+/-/_.
-                                </small>
-                            </div>
-
-                            <div class="mb-3">
-                                {{ form.email.label_tag }}
-                                {{ form.email }}
-                            </div>
-
-                            <div class="mb-3">
-                                {{ form.password1.label_tag }}
-                                {{ form.password1 }}
-                                <small id="passwordHelp" class="form-text text-muted">
-                                    Su contraseña debe contener por lo menos 8 caracteres y no puede ser similar a otros
-                                    componentes de su información personal. No puede ser una contraseña común y no puede
-                                    estar formada exclusivamente por números.
-                                </small>
-                            </div>
-
-                            <div class="mb-3">
-                                {{ form.password2.label_tag }}
-                                {{ form.password2 }}
-                                <small id="password2Help" class="form-text text-muted">
-                                    Introduzca la misma contraseña nuevamente, para poder verificarla.
-                                </small>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                            <button type="button" class="btn btn-primary" id="siguiente">Continuar</button>
+                            <button type="button" class="btn btn-primary" id="anterior"
+                                style="display: none;">Anterior</button>
+                            <button type="submit" class="btn" id="verificar"
+                                style="background-color: #008000; color: white; display: none;"
+                                disabled>Confirmar</button>
                         </form>
                     </div>
                 </div>
@@ -75,10 +127,8 @@
 
 {% endblock content %}
 
-{% comment %} <div>
-    <form action="" method="post">{% csrf_token %}
-        <h3 class="mb-4">Registro</h3>
-        {{form.as_p}}
-        <p><input type="submit" value="Confirmar"></p>
-    </form>
-</div> {% endcomment %}
+{% block scripts %}
+
+<script src="{% static 'js/usuarios.js' %}"></script>
+
+{% endblock scripts %}
