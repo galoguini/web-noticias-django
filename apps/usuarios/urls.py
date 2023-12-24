@@ -1,7 +1,8 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth
-from .views import update_foto_perfil
+from .views import update_foto_perfil, ResetContraseñaView, ResetContraseñaEnviadoView, ResetContraseñaConfirmacionView, ResetContraseñaCompletoView
+from django.urls import reverse_lazy
 
 app_name = 'usuarios' # nombre app:nombre path
 
@@ -15,4 +16,8 @@ urlpatterns = [
     path('perfil/editarContraseña/', views.editar_contraseña, name="editar_contraseña"),
     path('perfil/editarUsuario/', views.editar_usuario, name="editar_usuario"),
     path('perfil/editarEmail/', views.editar_email, name="editar_email"),
+    path('reset_contraseña/', ResetContraseñaView.as_view(), name='reset_contraseña'),
+    path('reset_contraseña_enviado/', ResetContraseñaEnviadoView.as_view(), name='reset_contraseña_enviado'),
+    path('reset/<uidb64>/<token>/', ResetContraseñaConfirmacionView.as_view(), name='reset_contraseña_confirmacion'),
+    path('reset_contraseña_completo/', ResetContraseñaCompletoView.as_view(), name='reset_contraseña_completo'),
 ]

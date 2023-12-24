@@ -6,8 +6,23 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import FotoPerfilForm, EditarNombreForm, EditarEmailForm, EditarUsuarioForm, EditarContraseñaForm
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
-# Create your views here.
+class ResetContraseñaView(PasswordResetView):
+    template_name = 'usuarios/reset_contraseña.html'
+    email_template_name = 'usuarios/reset_envio_email.html'
+    success_url = reverse_lazy('usuarios:reset_contraseña_enviado')
+
+class ResetContraseñaEnviadoView(PasswordResetDoneView):
+    template_name = 'usuarios/reset_contraseña_enviado.html'
+
+class ResetContraseñaConfirmacionView(PasswordResetConfirmView):
+    template_name = 'usuarios/reset_contraseña_confirmacion.html'
+    success_url = reverse_lazy('usuarios:reset_contraseña_completo')
+
+class ResetContraseñaCompletoView(PasswordResetCompleteView):
+    template_name = 'usuarios/reset_contraseña_completo.html'
+
 def login(request):
     return render(request, 'usuarios/login.html')
 
@@ -80,3 +95,4 @@ def editar_contraseña(request):
     else:
         form = EditarContraseñaForm(instance=request.user)
     return render(request, 'usuarios/editar_contraseña.html', {'form': form})
+

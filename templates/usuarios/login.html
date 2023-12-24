@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block titulo %}Login{% endblock titulo %}
+
 {% block estilos %}
 
 <link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
@@ -45,10 +47,10 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success w-100">Iniciar Sesión</button>
-                            {% if form.errors %}
-                            <a href="{% url 'usuarios:registro_usuario' %}" class="btn btn-primary w-100"
-                                style="margin-top: 10px;">Quiero crear una cuenta</a>
-                            {% endif %}
+                            <div class="d-flex justify-content-between">
+                                <a href="{% url 'usuarios:registro_usuario' %}" class="btn btn-primary w-50" style="margin-top: 10px; margin-right: 5px;">Quiero crear una cuenta</a>
+                                <a href="{% url 'usuarios:reset_contraseña' %}" class="btn btn-warning w-50" style="margin-top: 10px; margin-left: 5px;">Olvide mi contraseña</a>
+                            </div>
                         </form>
                     </div>
                 </div>
