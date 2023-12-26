@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+Correo enviado
+{% endblock titulo %}
+
+{% block estilos %}
+
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
+
+{% endblock estilos %}
+
+{% block content %}
+
+<section class="card-section gradient-custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card card-form">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Correo Enviado</h2>
+                        <h1 class="text-center">¡Revisa tu correo electrónico!</h1>
+                        <p class="text-center">Hemos enviado un correo electrónico a la dirección que proporcionaste. Haz clic en el enlace
+                            del correo electrónico para restablecer tu contraseña.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}

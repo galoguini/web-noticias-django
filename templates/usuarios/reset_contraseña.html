@@ -2,7 +2,9 @@
 
 {% load static %}
 
-{% block titulo %}Editar Email{% endblock titulo %}
+{% block titulo %}
+Restablecer contraseña
+{% endblock titulo %}
 
 {% block estilos %}
 
@@ -18,22 +20,22 @@
             <div class="col-md-6">
                 <div class="card card-form">
                     <div class="card-body">
-                        <h3 class="text-center mb-4">Editar Email</h3>
-                        <form method="post" action="">
+                        <h2 class="text-center mb-4">Restablecer contraseña</h2>
+                        <form method="post">
                             {% csrf_token %}
-
                             <div class="mb-3">
                                 <div class="form-label">
-                                    <label for="{{ form.email.id_for_label }}">Email</label>
+                                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
                                 </div>
                                 {% if form.email.errors %}
                                 <div class="alert alert-danger">{{ form.email.errors|striptags }}</div>
                                 {% endif %}
-                                <div class="form-field">{{ form.email }}</div>
+                                <div class="form-field">
+                                    {{ form.email }}
+                                </div>
                             </div>
-
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                            <a href="{% url 'usuarios:perfil' %}" class="btn btn-danger">Cancelar</a>
+                            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Restablecer mi contraseña</button>
+                            <a href="{% url 'usuarios:login' %}" class="btn btn-danger" style="margin-top: 10px;">Cancelar</a>
                         </form>
                     </div>
                 </div>
