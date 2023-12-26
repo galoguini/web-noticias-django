@@ -3,24 +3,27 @@
 {% load static %}
 
 {% block estilos %} 
-<link rel="stylesheet" href="{% static 'css/c_about.css' %}">
+<link rel="stylesheet" href="{% static 'css/contacto.css' %}">
 {% endblock estilos %}
 
 {% block content %}
 
-<div class="container mt-5 gradient-custom about-section">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card about-form">
-                <div class="card-body">
-                    <form method="POST">
-                        <h1 class="mb-4">Formulario de Contacto</h1>
+<section class="card-section gradient-custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card card-form">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Formulario de Contacto</h3>
+                        <form method="post" action="">
+                            {% csrf_token %}
+                        
                         {% if messages %}
                             {% for message in messages %}
                                 <div class="alert alert-{{ message.tags }}">{{ message }}</div>
                             {% endfor %}
                         {% endif %}
-                        {% csrf_token %}
+                        
                         <div class="form-group">
                             <label for="id_nombre_apellido">{{ form.nombre_apellido.label }}</label>
                             {{ form.nombre_apellido }}
@@ -51,5 +54,6 @@
         </div>
     </div>
 </div>
+</section>
 
 {% endblock content %}

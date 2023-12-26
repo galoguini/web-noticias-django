@@ -7,7 +7,7 @@ class ContactoForm(forms.ModelForm):
         fields = ['nombre_apellido', 'email', 'asunto', 'mensaje']
         labels = {
             'nombre_apellido': 'Nombre y Apellido',
-            'email': 'Correo Electrónico',
+            'email': 'Correo electrónico',
             'asunto': 'Asunto',
             'mensaje': 'Mensaje',
         }

@@ -49,3 +49,4 @@ def Detalle_noticia(request, pk):
 class Borrar_noticia(DeleteView):
     model = Noticia
     success_url = reverse_lazy('noticias:home_noticias')
+
