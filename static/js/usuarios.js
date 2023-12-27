@@ -24,6 +24,11 @@ $(document).ready(function() {
     });
 });
 
+document.getElementById('foto').addEventListener('change', checkFile);
+document.querySelector('.btn-warning').addEventListener('click', function() {
+    document.getElementById('foto').click();
+});
+
 function checkFile() {
     var fileInput = document.getElementById('foto');
     var submitButton = document.getElementById('submitFoto');
@@ -35,15 +40,20 @@ function checkFile() {
     }
 }
 
-document.getElementById('editarFoto').addEventListener('click', function() {
+document.getElementById('botonCancelar').addEventListener('click', mostrarEtapa1);
+document.getElementById('botonEditar').addEventListener('click', mostrarEtapa2);
+document.getElementById('editarFoto').addEventListener('click', mostrarFotoEtapa2);
+document.getElementById('cancelar').addEventListener('click', mostrarFotoEtapa1);
+
+function mostrarFotoEtapa1() {
+    document.getElementById('etapa1').style.display = 'block';
+    document.getElementById('etapa2').style.display = 'none';
+}
+
+function mostrarFotoEtapa2() {
     document.getElementById('etapa1').style.display = 'none';
     document.getElementById('etapa2').style.display = 'block';
-});
-
-document.getElementById('cancelar').addEventListener('click', function() {
-    document.getElementById('etapa2').style.display = 'none';
-    document.getElementById('etapa1').style.display = 'block';
-});
+}
 
 function mostrarEtapa1() {
     document.getElementById('infoEtapa1').style.display = 'block';
