@@ -89,7 +89,6 @@ class Cargar_noticia(LoginRequiredMixin, CreateView):
 def Modificar_noticia(request, pk):
     noticia = get_object_or_404(Noticia, pk=pk)
 
-    # Verificar si el usuario actual tiene permisos para modificar la noticia
     if noticia.usuario != request.user and not request.user.is_staff:
         return HttpResponseForbidden("No tienes permiso para modificar esta noticia.")
 
@@ -117,12 +116,10 @@ class Borrar_noticia(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('noticias:home_noticias')
 
     def dispatch(self, request, *args, **kwargs):
-        # Obtener la noticia a eliminar
         noticia = self.get_object()
 
-        # Verificar si el usuario tiene permisos para eliminar la noticia
         if noticia.usuario == self.request.user or self.request.user.is_staff:
             return super().dispatch(request, *args, **kwargs)
         else:
-            # Si el usuario no tiene permisos, redirigir o mostrar un error
             return HttpResponseForbidden("No tienes permiso para eliminar esta noticia.")
+
