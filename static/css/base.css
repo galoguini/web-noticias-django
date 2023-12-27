@@ -109,3 +109,15 @@ select.noStyle {
     border: none;
     outline: none
 }
+
+.minifoto-navbar {
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.minifoto-menu {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+}
