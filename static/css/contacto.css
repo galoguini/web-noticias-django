@@ -1,37 +1,35 @@
 .gradient-custom {
     /* fallback for old browsers */
-    background: #6a11cb;
+    background: #0a6abe;
 
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    background: -webkit-linear-gradient(to right, rgb(103, 153, 134), rgb(103, 153, 134));
 
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    background: linear-gradient(to right, rgb(0, 139, 139), rgb(0, 139, 139))
 }
 
 .form-group {
-    margin-bottom: 20px; /* Espacio entre cada campo */
+    margin-bottom: 20px; 
 }
 
 .form-group label {
-    display: block; /* Muestra las etiquetas de los campos en bloque (una debajo de otra) */
-    font-weight: bold; /* Puedes aplicar estilos adicionales a las etiquetas si es necesario */
+    display: block; 
+    font-weight: bold; 
 }
 
 .form-group input,
 .form-group textarea {
-    /* Estilos para los campos de entrada (input) y áreas de texto (textarea) */
     width: 100%;
-    padding: 8px; /* Espaciado interno */
-    margin-top: 4px; /* Espacio entre el campo y el texto de ayuda */
+    padding: 8px; 
+    margin-top: 4px; 
 }
 
 .form-group small {
-    /* Estilos para los textos de ayuda */
-    display: block; /* Muestra los textos de ayuda en bloque (debajo de los campos) */
-    font-size: 12px; /* Tamaño del texto */
-    color: #6c757d; /* Color del texto (ajústalo según tu diseño) */
-    margin-top: 4px; /* Espacio entre el campo y el texto de ayuda */
+    display: block; 
+    font-size: 12px; 
+    color: #6c757d; 
+    margin-top: 4px; 
 }
 
 .card-section {

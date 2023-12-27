@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 # Create your views here.
 
 class ContactoUsuario(CreateView):
-    template_name = 'contacto/contacto.html'
+    template_name = 'contactos/contacto.html'
     form_class = ContactoForm
     success_url = reverse_lazy('home')
 

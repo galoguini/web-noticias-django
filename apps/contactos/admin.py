@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Contacto
+from .models import Contactos
 
 # Register your models here.
 
-@admin.register(Contacto)
+@admin.register(Contactos)
 class ContactoAdmin(admin.ModelAdmin):
     list_display = ('id', 'nombre_apellido', 'email', 'asunto', 'fecha')
     

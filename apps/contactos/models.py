@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 # Create your models here.
 
-class Contacto(models.Model):
+class Contactos(models.Model):
     nombre_apellido =models.CharField(max_length=120)
     email = models.EmailField()
     asunto = models.CharField(max_length=50)
