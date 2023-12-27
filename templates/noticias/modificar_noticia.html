@@ -1,31 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="card">
-    <div class="card-body">
+{% if request.user == noticia.usuario or request.user.is_staff %}
+    <div class="card">
+        <div class="card-body">
         <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <h3 class="mb-3">MODIFICAR NOTICIA</h3>
+                {% csrf_token %}
+                <h3 class="mb-3">MODIFICAR NOTICIA</h3>
 
-            <!-- Campo Título -->
             <div class="mb-3">
                 <label for="id_titulo" class="form-label">Título:</label>
                 <input type="text" class="form-control" id="id_titulo" name="titulo" value="{{ form.titulo.value }}" required>
             </div>
 
-            <!-- Campo Contenido -->
             <div class="mb-3">
                 <label for="id_contenido" class="form-label">Contenido:</label>
                 <textarea class="form-control" id="id_contenido" name="contenido" required>{{ form.contenido.value }}</textarea>
             </div>
 
-            <!-- Campo Imagen -->
             <div class="mb-3">
                 <label for="id_imagen" class="form-label">Imagen:</label>
                 <input type="file" class="form-control" id="id_imagen" name="imagen" accept="image/*">
             </div>
 
-            <!-- Campo Categoría -->
             <div class="mb-3">
                 <label for="id_categoria" class="form-label">Categoría:</label>
                 <select class="form-select" id="id_categoria" name="categoria" required>
@@ -35,11 +32,13 @@
                 </select>
             </div>
 
-            <!-- Botón de Confirmación -->
             <div class="mb-3">
                 <input type="submit" class="btn btn-primary" value="Confirmar">
             </div>
         </form>
     </div>
 </div>
+{% else %}
+    <p>No tienes permiso para modificar esta noticia.</p>
+{% endif %}
 {% endblock content %}

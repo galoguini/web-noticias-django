@@ -12,10 +12,10 @@
         <h2 class="card-title">{{ noticia.titulo }}</h2>
         <p class="card-text">{{ noticia.contenido }}</p>
     </div>
-    {% if user.is_authenticated and noticia.usuario == user %}
+    {% if user.is_authenticated and noticia.usuario_id == user.id or user.is_staff %}
         <a href="{% url 'noticias:modificar_noticia' noticia.pk %}" class="btn btn-primary w-25" style="margin-top: 10px;">Editar</a>
         <a href="{% url 'noticias:borrar_noticia' noticia.pk %}" class="btn btn-danger w-25" style="margin-top: 10px; margin-bottom: 10px">Borrar</a>
-    {% endif %}
+    {% endif %} 
     <div class="card-footer text-muted">
         {% if noticia.modificado %}
             {% if noticia.modificado != noticia.creado %}
