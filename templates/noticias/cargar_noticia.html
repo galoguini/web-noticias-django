@@ -1,9 +1,55 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block estilos %}
+
+    <link rel="stylesheet" href="{% static 'css/noticias.css' %}">
+
+{% endblock estilos %}
+
 {% block content %}
-    <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
-            <h3>CREAR NOTICIA</h3>
-            {{form.as_p}}
-            <p><input type="submit" value="Confirmar"></p>
-        </form>
+<section class="card-section gradient-custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card card-form">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Crear Noticia</h3>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- Campo titulo -->
+                            <div class="form-group">
+                                <label for="id_titulo">{{ form.titulo.label }}</label>
+                                {{ form.titulo }}
+                                <small class="form-text text-muted">{{ form.titulo.help_text }}</small>
+                            </div>
+                            <!-- Campo contenido -->
+                            <div class="form-group">
+                                <label for="id_contenido">{{ form.contenido.label }}</label>
+                                {{ form.contenido }}
+                                <small class="form-text text-muted">{{ form.contenido.help_text }}</small>
+                            </div>
+                            <!-- Campo imagen -->
+                            <div class="form-group">
+                                <label for="id_imagen">{{ form.imagen.label }}</label>
+                                {{ form.imagen }}
+                                <small class="form-text text-muted">{{ form.imagen.help_text }}</small>
+                            </div>
+                            <!-- Campo categoria -->
+                            <div class="form-group">
+                                <label for="id_categoria">{{ form.categoria.label }}</label>
+                                {{ form.categoria }}
+                                <small class="form-text text-muted">{{ form.categoria.help_text }}</small>
+                            </div>
+                            <!-- Botón Crear -->
+                            <input type="submit" class="btn btn-primary" value="Crear">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock content %}

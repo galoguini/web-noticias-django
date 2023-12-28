@@ -1,4 +1,6 @@
 from django.http import HttpResponseForbidden
+from typing import Any
+
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -80,6 +82,11 @@ class Cargar_noticia(LoginRequiredMixin, CreateView):
 
     def test_func(self):
         return self.request.user.is_staff
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['request'] = self.request
+        return context
 
     def form_valid(self, form):
         form.instance.usuario = self.request.user 

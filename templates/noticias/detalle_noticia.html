@@ -19,12 +19,21 @@
     <div class="card-footer text-muted">
         {% if noticia.modificado %}
             {% if noticia.modificado != noticia.creado %}
-                Modificado el {{ noticia.modificado }} por {{ noticia.usuario }}
+                Modificado el {{ noticia.modificado }} por 
+                <a href="{% url 'usuarios:perfil' username=noticia.usuario.username %}">
+                    {{ noticia.usuario }}
+                </a>
             {% else %}
-                Publicado el {{ noticia.creado }} por {{ noticia.usuario }}
+                Publicado el {{ noticia.creado }} por 
+                <a href="{% url 'usuarios:perfil' username=noticia.usuario.username %}">
+                    {{ noticia.usuario }}
+                </a>
             {% endif %}
         {% else %}
-            Publicado el {{ noticia.creado }} por {{ noticia.usuario }}
+        Publicado el {{ noticia.creado }} por 
+        <a href="{% url 'usuarios:perfil' username=noticia.usuario.username %}">
+            {{ noticia.usuario }}
+        </a>
         {% endif %}
     </div>
 </div>
