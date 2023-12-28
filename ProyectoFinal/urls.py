@@ -26,6 +26,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('noticias/', include('apps.noticias.urls')),
     path('usuarios/', include('apps.usuarios.urls')),
+    path('Comentarios/', include('apps.comentarios.urls')),
     path('about/', views.about, name="about"),
     path('contacto/', include('apps.contactos.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -2,6 +2,13 @@
 
 {% load static %}
 
+{% block estilos %}
+
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
+<link rel="stylesheet" href="{% static 'css/comentario.css' %}">
+
+{% endblock estilos %} 
+
 {% block content %}
 
 <h1>Detalle de {{ noticia.titulo }}</h1>
@@ -25,9 +32,51 @@
             {% endif %}
         {% else %}
             Publicado el {{ noticia.creado }} por {{ noticia.usuario }}
-        {% endif %}
+        {% endif %} 
     </div>
+</div> 
+<div class="comentarios1 mb-4">
+    <h2 class="card-header">COMENTARIOS</h2>
+    <div class="card-body">
+        {% for c in comentarios %}
+            <div class="comment-container mb-2">
+                <div class="comentario1 sangria1">
+                    <div class="comment-content">
+                        <div class="foto-botonera" > <!-- Ajusta el valor del margen según tus preferencias -->
+                            <img src="{{ c.usuario.userprofile.get_foto_perfil }}" alt="Foto de perfil" class="foto-comentario">
+                        </div>
+                        <div style="padding-left: 20px;">
+                            <h5>{{ c.usuario }}</h5>
+                            <div class="card mb-2 comentario-texto">
+                                <div class="card-body texto1">
+                                    <p>{{ c.texto }}</p>
+                                </div>
+                            </div>
+                            {% if c.modificado > c.creado %}
+                                <p class="modificado">(Editado en {{ c.modificado }})</p>
+                            {% endif %}
+                            {% if request.user == c.usuario or request.user.is_staff %}
+                                <div class="botonera">
+                                    <a href="{% url 'comentarios:borrar_comentario' c.pk %}" class="btn btn-danger btn-sm">Borrar</a>
+                                    <a href="{% url 'comentarios:modificar_comentario' c.pk %}" class="btn btn-primary btn-sm ml-2">Modificar</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% if request.user.is_authenticated %}
+        <div class="card-footer">
+            <form method="POST" action="{% url 'comentarios:agregar' noticia.pk %}">{% csrf_token %}
+                <textarea name="comentario" class="form-control" placeholder="Escribe tu comentario"></textarea>
+                <button type="submit" class="btn btn-primary mt-2">COMENTAR</button>
+            </form>
+        </div>
+    {% endif %}
 </div>
 
 
-{% endblock content %}
+
+{% endblock %}
