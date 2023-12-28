@@ -86,11 +86,11 @@
                 <img class="card-img-top" src="{{ noticia.imagen.url }}" alt="Card image cap"
                     style="max-width: 300px; max-height: 200px;">
                 <div class="card-body">
-                    <h2 class="card-title">{{ noticia.titulo }}</h2>
-                    <p class="card-text">{{ noticia.contenido }}</p>
+                    <h2 class="card-title"><a
+                        href="{% url 'noticias:detalle_noticia' noticia.pk %}">
+                        <b><u>{{noticia.titulo}}</u></b></a></h2>
+                    <p class="card-text">{{ noticia.contenido|truncatewords:30 }}</p>
                     <p class="card-text">{{ noticia.categoria }}</p>
-                    <a href="{% url 'noticias:detalle_noticia' noticia.pk %}" class="btn btn-primary">Leer más
-                        &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
                     Publicado el {{ noticia.creado }} por
