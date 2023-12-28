@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from django.urls import reverse_lazy
+from decouple import config
 
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('home')
@@ -40,6 +41,7 @@ INSTALLED_APPS = [ #ACA PONE LAS APPS
     'apps.noticias',
     'apps.usuarios',
     'apps.comentarios',
+    'apps.contactos',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.noticias.context_processors.noticia_aleatoria',
             ],
         },
     },
@@ -107,3 +110,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#recuperar acceso a la cuenta
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'guinigalo@gmail.com'
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')

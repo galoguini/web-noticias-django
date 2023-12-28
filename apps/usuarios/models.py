@@ -14,7 +14,7 @@ class UserProfile(models.Model):
         if os.path.isfile(os.path.join(settings.MEDIA_ROOT, self.profile_picture.name)):
             return self.profile_picture.url
         else:
-            return '/media/profile_pictures/default.jpg'
+            return '/static/img/default.jpg'
         
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

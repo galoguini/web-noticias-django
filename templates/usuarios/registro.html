@@ -2,12 +2,13 @@
 
 {% load static %}
 
+{% block titulo %}Registro{% endblock titulo %}
+
 {% block estilos %}
 
 <link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
 
 {% endblock estilos %}
-
 
 {% block content %}
 
@@ -54,11 +55,9 @@
                                     <div class="alert alert-danger">{{ form.username.errors|striptags }}</div>
                                     {% endif %}
                                     <div class="form-field">{{ form.username }}</div>
-                                    <small id="usernameHelp" class="form-text text-muted">
-                                        Obligatorio. Longitud máxima de 150 caracteres. Solo puede estar formado por
-                                        letras,
-                                        números y los caracteres @/./+/-/_.
-                                    </small>
+                                    {% if form.username.help_text %}
+                                    <small class="form-text text-muted">{{ form.username.help_text }}</small>
+                                    {% endif %}
                                 </div>
 
                                 <div class="mb-3">
@@ -76,15 +75,9 @@
                                         <label for="{{ form.password1.id_for_label }}">Contraseña</label>
                                     </div>
                                     <div class="form-field">{{ form.password1 }}</div>
-                                    <small id="passwordHelp" class="form-text text-muted">
-                                        Su contraseña debe contener por lo menos 8 caracteres y no puede ser similar
-                                        a
-                                        otros
-                                        componentes de su información personal. No puede ser una contraseña común y
-                                        no
-                                        puede
-                                        estar formada exclusivamente por números.
-                                    </small>
+                                    {% if form.password1.help_text %}
+                                    <small class="form-text text-muted">{{ form.password1.help_text }}</small>
+                                    {% endif %}
                                 </div>
 
                                 <div class="mb-3">
@@ -96,15 +89,15 @@
                                     <div class="alert alert-danger">{{ form.password2.errors|striptags }}</div>
                                     {% endif %}
                                     <div class="form-field">{{ form.password2 }}</div>
-                                    <small id="password2Help" class="form-text text-muted">
-                                        Introduzca la misma contraseña nuevamente, para poder verificarla.
-                                    </small>
+                                    {% if form.password2.help_text %}
+                                    <small class="form-text text-muted">{{ form.password2.help_text }}</small>
+                                    {% endif %}
                                 </div>
 
                                 <div class="mb-3 form-check">
                                     <input type="checkbox" class="form-check-input" id="terms" required>
                                     <label class="form-check-label" for="terms">
-                                        He leído y acepto los <a href="https://youtu.be/dQw4w9WgXcQ?si=1WZj97Lq9x4gs932"
+                                        He leído y acepto los <a href="{% url 'usuarios:term_cond' %}"
                                             target="_blank">TÉRMINOS Y
                                             CONDICIONES</a>
                                     </label>

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+Cambio de contraseña
+{% endblock titulo %}
+
+{% block estilos %}
+
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
+
+{% endblock estilos %}
+
+{% block content %}
+
+<section class="card-section gradient-custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card card-form">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Cambio de contraseña</h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {% if form.new_password2.errors %}
+                                <div class="alert alert-danger">{{ form.new_password2.errors|striptags }}</div>
+                                {% endif %}
+                                <div class="form-label">
+                                    <label for="{{ form.new_password1.id_for_label }}">{{ form.new_password1.label }}</label>
+                                </div>
+                                <div class="form-field">
+                                    {{ form.new_password1 }}
+                                    {% if form.new_password1.help_text %}
+                                        <small class="form-text text-muted">{{ form.new_password1.help_text }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-label">
+                                    <label for="{{ form.new_password2.id_for_label }}">{{ form.new_password2.label }}</label>
+                                </div>
+                                <div class="form-field">
+                                    {{ form.new_password2 }}
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Confirmar nueva contraseña</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}
