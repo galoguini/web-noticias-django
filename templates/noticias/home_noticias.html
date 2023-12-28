@@ -2,8 +2,13 @@
 
 {% load static %}
 
+{% block titulo %}
+    Noticias
+{% endblock titulo %}
+
 {% block estilos %}
-<link rel="stylesheet" href="{% static 'css/noticias.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/noticias.css' %}">
 
 {% endblock estilos %}
 
@@ -75,7 +80,7 @@
 
 <section class="card-section gradient-custom pt-4">
     <div class="container">
-        <div class="d-flex flex-wrap justify-content-around">
+        <div class="grid-container">
             {% for noticia in noticias %}
             <div class="card mb-2 news-card">
                 <img class="card-img-top" src="{{ noticia.imagen.url }}" alt="Card image cap"

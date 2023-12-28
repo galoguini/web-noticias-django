@@ -92,7 +92,8 @@
     margin-bottom: 5px;
 }
 
-.btn-cyan {
-    background-color: rgba(6, 158, 208, 0.885);
-    color: black; /* Cambia el color del texto si es necesario para mejor contraste */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Define el ancho mínimo y máximo para cada columna */
+    gap: 20px; /* Espacio entre las tarjetas */
 }

@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block titulo %}
+    {{ noticia.titulo }}
+{% endblock titulo %}
+
 {% block content %}
 
 <h1>Detalle de {{ noticia.titulo }}</h1>
