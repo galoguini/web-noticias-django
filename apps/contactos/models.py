@@ -12,4 +12,7 @@ class Contactos(models.Model):
     def __str__(self):
         return self.nombre_apellido
     
+    class Meta:
+        verbose_name_plural = "Contactos"
+    
     
