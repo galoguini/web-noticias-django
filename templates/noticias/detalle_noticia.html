@@ -2,10 +2,13 @@
 
 {% load static %}
 
+{% block titulo %}
+    {{ noticia.titulo }}
+{% endblock titulo %}
+
 {% block estilos %}
 
-<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
-<link rel="stylesheet" href="{% static 'css/comentario.css' %}">
+    <link rel="stylesheet" href="{% static 'css/comentario.css' %}">
 
 {% endblock estilos %} 
 
@@ -19,20 +22,29 @@
         <h2 class="card-title">{{ noticia.titulo }}</h2>
         <p class="card-text">{{ noticia.contenido }}</p>
     </div>
-    {% if user.is_authenticated and noticia.usuario == user %}
+    {% if user.is_authenticated and noticia.usuario_id == user.id or user.is_staff %}
         <a href="{% url 'noticias:modificar_noticia' noticia.pk %}" class="btn btn-primary w-25" style="margin-top: 10px;">Editar</a>
         <a href="{% url 'noticias:borrar_noticia' noticia.pk %}" class="btn btn-danger w-25" style="margin-top: 10px; margin-bottom: 10px">Borrar</a>
-    {% endif %}
+    {% endif %} 
     <div class="card-footer text-muted">
         {% if noticia.modificado %}
             {% if noticia.modificado != noticia.creado %}
-                Modificado el {{ noticia.modificado }} por {{ noticia.usuario }}
+                Modificado el {{ noticia.modificado }} por 
+                <a href="{% url 'usuarios:perfil' username=noticia.usuario.username %}">
+                    {{ noticia.usuario }}
+                </a>
             {% else %}
-                Publicado el {{ noticia.creado }} por {{ noticia.usuario }}
+                Publicado el {{ noticia.creado }} por 
+                <a href="{% url 'usuarios:perfil' username=noticia.usuario.username %}">
+                    {{ noticia.usuario }}
+                </a>
             {% endif %}
         {% else %}
-            Publicado el {{ noticia.creado }} por {{ noticia.usuario }}
-        {% endif %} 
+            Publicado el {{ noticia.creado }} por 
+            <a href="{% url 'usuarios:perfil' username=noticia.usuario.username %}">
+                {{ noticia.usuario }}
+            </a>
+        {% endif %}
     </div>
 </div> 
 <div class="comentarios1 mb-4">

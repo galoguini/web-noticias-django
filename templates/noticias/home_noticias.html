@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Noticias
+{% endblock titulo %}
+
+{% block estilos %}
+
+    <link rel="stylesheet" href="{% static 'css/noticias.css' %}">
+
+{% endblock estilos %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container">
+        <button class="navbar-toggler btn btn-primary" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown me-2">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                        CATEGORÍAS
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownCategorias">
+                        <li><a class="dropdown-item" href="{% url 'noticias:home_noticias' %}">TODAS</a></li>
+                        {% for categoria in categorias %}
+                        <li><a class="dropdown-item"
+                                href="{% url 'noticias:home_noticias' %}?categoria={{ categoria.id }}">
+                                {{ categoria.nombre }}
+                        </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="nav-item dropdown me-2">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        ORDENAR POR FECHA
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownFecha">
+                        <li><a class="dropdown-item"
+                                href="{% if request.GET.categoria %}?categoria={{ request.GET.categoria }}&orden=asc{% else %}?orden=asc{% endif %}">Ascendente</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                                href="{% if request.GET.categoria %}?categoria={{ request.GET.categoria }}&orden=desc{% else %}?orden=desc{% endif %}">Descendente</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown me-2">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        ORDENAR POR TÍTULO
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownTitulo">
+                        <li><a class="dropdown-item"
+                                href="{% if request.GET.categoria %}?categoria={{ request.GET.categoria }}&titulo=asc{% else %}?titulo=asc{% endif %}">Aa
+                                -> Zz</a></li>
+                        <li><a class="dropdown-item"
+                                href="{% if request.GET.categoria %}?categoria={{ request.GET.categoria }}&titulo=desc{% else %}?titulo=desc{% endif %}">Zz
+                                -> Aa</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="{% url 'noticias:cargar_noticia' %}">
+                        CREAR NOTICIA
+                    </a>
+                </li>
+            </ul>
+            {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="card-section gradient-custom pt-4">
+    <div class="container">
+        <div class="grid-container">
+            {% for noticia in noticias %}
+            <div class="card mb-2 news-card">
+                <img class="card-img-top" src="{{ noticia.imagen.url }}" alt="Card image cap"
+                    style="max-width: 300px; max-height: 200px;">
+                <div class="card-body">
+                    <h2 class="card-title">{{ noticia.titulo }}</h2>
+                    <p class="card-text">{{ noticia.contenido }}</p>
+                    <p class="card-text">{{ noticia.categoria }}</p>
+                    <a href="{% url 'noticias:detalle_noticia' noticia.pk %}" class="btn btn-primary">Leer más
+                        &rarr;</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Publicado el {{ noticia.creado }} por
+                    <a href="{% url 'usuarios:perfil' username=noticia.usuario.username %}">
+                        {{ noticia.usuario }}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}  
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

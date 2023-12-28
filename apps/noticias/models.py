@@ -33,6 +33,9 @@ class Noticia(models.Model):
                 self.modificado = timezone.now()
         super(Noticia, self).save(*args, **kwargs)
 
+    def str(self):
+        return self.titulo
+
     class Meta:
         verbose_name = 'noticia'
         verbose_name_plural = 'noticias'
