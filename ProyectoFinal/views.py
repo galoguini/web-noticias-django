@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from apps.noticias.models import Noticia, Categoria
 
+
 class HomeView(ListView):
     model = Noticia
     template_name = 'home.html'

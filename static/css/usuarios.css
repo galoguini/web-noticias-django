@@ -70,16 +70,6 @@
     padding-bottom: 0px;
 }
 
-/* .imagen-noticia {
-    display: block;
-    margin-left: 0;
-    margin-right: 0;
-    width: 350px;
-    height: 350px;
-    object-fit: cover;
-    object-position: right;
-} */
-
 .imagen-noticia-container {
     position: relative;
     width: 100%;
