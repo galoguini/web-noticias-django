@@ -42,10 +42,10 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownFecha">
                         <li><a class="dropdown-item"
-                                href="{% if request.GET.categoria %}?categoria={{ request.GET.categoria }}&orden=asc{% else %}?orden=asc{% endif %}">Ascendente</a>
+                                href="{% if request.GET.categoria %}?categoria={{ request.GET.categoria }}&orden=asc{% else %}?orden=asc{% endif %}">Antiguo</a>
                         </li>
                         <li><a class="dropdown-item"
-                                href="{% if request.GET.categoria %}?categoria={{ request.GET.categoria }}&orden=desc{% else %}?orden=desc{% endif %}">Descendente</a>
+                                href="{% if request.GET.categoria %}?categoria={{ request.GET.categoria }}&orden=desc{% else %}?orden=desc{% endif %}">Reciente</a>
                         </li>
                     </ul>
                 </li>

@@ -8,7 +8,7 @@
 
 {% block estilos %}
 
-    <link rel="stylesheet" href="{% static 'css/comentario.css' %}">
+<link rel="stylesheet" href="{% static 'css/comentario.css' %}">
 
 {% endblock estilos %} 
 
@@ -58,7 +58,7 @@
                             <img src="{{ c.usuario.userprofile.get_foto_perfil }}" alt="Foto de perfil" class="foto-comentario">
                         </div>
                         <div style="padding-left: 20px;">
-                            <h5>{{ c.usuario }}</h5>
+                            <h5><a href="{% url 'usuarios:perfil' username=c.usuario.username %}">{{ c.usuario }}</a></h5>
                             <div class="card mb-2 comentario-texto">
                                 <div class="card-body texto1">
                                     <p>{{ c.texto }}</p>

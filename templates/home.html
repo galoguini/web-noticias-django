@@ -4,9 +4,57 @@
 
 {% block titulo %}Home{% endblock titulo %}
 
+{% block estilos %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+{% endblock estilos %}
+
 {% block content %}
 
-<h1>hola! Estamos en el Home </h1>
+<section class="body-home gradient-custom pt-4 pb-4">
+    <div class="card-frame2">
+        <h1 class="header"> ÚLTIMAS NOTICIAS</h1>
+        <div class="card-container mt-4">
 
+            {% for noticia in home_principal_n %}
+            {% if forloop.counter <= 4 %} <div class="card">
+                <a href="{% url 'noticias:detalle_noticia' noticia.pk %}" , views.Detalle_noticia,
+                    class="detalle_noticia link">
+                    <h2>{{ noticia.titulo }}</h2>
+                    {% if noticia.imagen %}
+                    <img src="{{ noticia.imagen.url }}" alt="{{ noticia.titulo }}">
+                    {% endif %}
+                    <p>Fecha de Publicación: {{ noticia.creado }}</p>
+                </a>
+        </div>
+
+            {% endif %}
+            {% endfor %}
+    </div>
+    
+    <!-- categorías -->
+
+    
+        {% for categoria, noticias in noticias_por_categoria.items %}
+        <div class="card-frame">
+            <h2>{{ categoria.nombre }}</h2>
+            <div class="card-container mt-3">
+                {% for noticia in noticias %}
+                <div class="card">
+                    <a href="{% url 'noticias:detalle_noticia' noticia.pk %}" class="detalle_noticia link">
+                        <h2>{{ noticia.titulo }}</h2>
+                        {% if noticia.imagen %}
+                        <img src="{{ noticia.imagen.url }}" alt="{{ noticia.titulo }}">
+                        {% endif %}
+                        <p>Fecha de Publicación: {{ noticia.creado }}</p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %} 
+    
+</section>
 
 {% endblock content %}
