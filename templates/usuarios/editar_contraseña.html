@@ -22,20 +22,15 @@
                         <form method="post" action="">
                             {% csrf_token %}
 
+                            {% if form.password2.errors %}
+                            <div class="alert alert-danger">{{ form.password2.errors|striptags }}</div>
+                            {% endif %}
+
                             <div class="mb-3">
                                 <div class="form-label">
                                     <label for="{{ form.password.id_for_label }}">Contraseña</label>
                                 </div>
                                 <div class="form-field">{{ form.password }}</div>
-                                <small id="passwordHelp" class="form-text text-muted">
-                                    Su contraseña debe contener por lo menos 8 caracteres y no puede ser similar
-                                    a
-                                    otros
-                                    componentes de su información personal. No puede ser una contraseña común y
-                                    no
-                                    puede
-                                    estar formada exclusivamente por números.
-                                </small>
                             </div>
 
                             <div class="mb-3">
@@ -43,17 +38,11 @@
                                     <label for="{{ form.password2.id_for_label }}">Confirmación de
                                         contraseña</label>
                                 </div>
-                                {% if form.password2.errors %}
-                                <div class="alert alert-danger">{{ form.password2.errors|striptags }}</div>
-                                {% endif %}
                                 <div class="form-field">{{ form.password2 }}</div>
-                                <small id="password2Help" class="form-text text-muted">
-                                    Introduzca la misma contraseña nuevamente, para poder verificarla.
-                                </small>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Actualizar</button>
-                            <a href="{% url 'usuarios:perfil' %}" class="btn btn-danger">Cancelar</a>
+                            <a href="{% url 'usuarios:perfil' request.user.username %}" class="btn btn-danger">Cancelar</a>
                         </form>
                     </div>
                 </div>

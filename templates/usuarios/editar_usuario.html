@@ -30,14 +30,9 @@
                                 <div class="alert alert-danger">{{ form.username.errors|striptags }}</div>
                                 {% endif %}
                                 <div class="form-field">{{ form.username }}</div>
-                                <small id="usernameHelp" class="form-text text-muted">
-                                    Obligatorio. Longitud máxima de 150 caracteres. Solo puede estar formado por
-                                    letras,
-                                    números y los caracteres @/./+/-/_.
-                                </small>
                             </div>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
-                            <a href="{% url 'usuarios:perfil' %}" class="btn btn-danger">Cancelar</a>
+                            <a href="{% url 'usuarios:perfil' request.user.username %}" class="btn btn-danger">Cancelar</a>
                         </form>
                     </div>
                 </div>

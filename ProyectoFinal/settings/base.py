@@ -40,6 +40,8 @@ INSTALLED_APPS = [ #ACA PONE LAS APPS
     'django.contrib.staticfiles',
     'apps.noticias',
     'apps.usuarios',
+    'apps.comentarios',
+    'apps.contactos',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.noticias.context_processors.noticia_aleatoria',
             ],
         },
     },

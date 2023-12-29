@@ -13,3 +13,6 @@ class HomeView(ListView):
         noticias_por_categoria = {categoria: Noticia.objects.filter(categoria=categoria)[:2] for categoria in categorias}
         context['noticias_por_categoria'] = noticias_por_categoria
         return context
+
+def about(request):
+    return render(request, 'about.html')

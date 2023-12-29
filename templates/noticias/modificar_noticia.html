@@ -1,45 +1,70 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block titulo %}
+    Modificar noticia
+{% endblock titulo %}
+
+{% block estilos %}
+
+    <link rel="stylesheet" href="{% static 'css/noticias.css' %}">
+
+{% endblock estilos %}
+
 {% block content %}
-<div class="card">
-    <div class="card-body">
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <h3 class="mb-3">MODIFICAR NOTICIA</h3>
 
-            <!-- Campo Título -->
-            <div class="mb-3">
-                <label for="id_titulo" class="form-label">Título:</label>
-                <input type="text" class="form-control" id="id_titulo" name="titulo" value="{{ form.titulo.value }}" required>
-            </div>
+{% if request.user == noticia.usuario or request.user.is_staff %}
+    <section class="card-section gradient-custom">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card card-form">
+                        <div class="card-body">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <h3 class="mb-3">MODIFICAR NOTICIA</h3>
 
-            <!-- Campo Contenido -->
-            <div class="mb-3">
-                <label for="id_contenido" class="form-label">Contenido:</label>
-                <textarea class="form-control" id="id_contenido" name="contenido" required>{{ form.contenido.value }}</textarea>
-            </div>
+                                <div class="mb-3">
+                                    <label for="id_titulo" class="form-label">Título:</label>
+                                    <input type="text" class="form-control" id="id_titulo" name="titulo" value="{{ form.titulo.value }}" required>
+                                    <small class="form-text text-muted">{{ form.titulo.help_text }}</small>
+                                </div>
 
-            <!-- Campo Imagen -->
-            <div class="mb-3">
-                <label for="id_imagen" class="form-label">Imagen:</label>
-                <input type="file" class="form-control" id="id_imagen" name="imagen" accept="image/*">
-            </div>
+                                <div class="mb-3">
+                                    <label for="id_contenido" class="form-label">Contenido:</label>
+                                    <textarea class="form-control" id="id_contenido" name="contenido" required>{{ form.contenido.value }}</textarea>
+                                    <small class="form-text text-muted">{{ form.contenido.help_text }}</small>
+                                </div>
 
-            <!-- Campo Categoría -->
-            <div class="mb-3">
-                <label for="id_categoria" class="form-label">Categoría:</label>
-                <select class="form-select" id="id_categoria" name="categoria" required>
-                    {% for categoria in categorias %}
-                        <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+                                <div class="mb-3">
+                                    <label for="id_imagen" class="form-label">Imagen:</label>
+                                    <input type="file" class="form-control" id="id_imagen" name="imagen" accept="image/*">
+                                    <small class="form-text text-muted">{{ form.imagen.help_text }}</small>
+                                </div>
 
-            <!-- Botón de Confirmación -->
-            <div class="mb-3">
-                <input type="submit" class="btn btn-primary" value="Confirmar">
+                                <div class="mb-3">
+                                    <label for="id_categoria" class="form-label">Categoría:</label>
+                                    <select class="form-select" id="id_categoria" name="categoria" required>
+                                        {% for categoria in categorias %}
+                                            <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <small class="form-text text-muted">{{ form.categoria.help_text }}</small>
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="submit" class="btn btn-primary" value="Confirmar">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
+    </section>
+{% else %}
+    <p>No tienes permiso para modificar esta noticia.</p>
+{% endif %}
+
 {% endblock content %}

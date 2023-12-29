@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+
+{% endblock titulo %}
+
+{% block estilos %}
+
+{% endblock estilos %}
+
+{% block content %}
+
+	
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Confirmar Eliminación</h2>
+            
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="{{ form.text.id_for_label }}">¿Estás seguro de que deseas eliminar "{{ object }}"?</label>
+                    {{ form.text }}
+                </div>
+                
+                <div class="form-group mt-4">
+                    <input type="submit" class="btn btn-danger" value="CONFIRMAR">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %} 

@@ -12,74 +12,103 @@
 
 {% block content %}
 
-<section class="card-section gradient-custom">
+<section class="perfil-section gradient-custom">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card card-form profile-card">
+            <div class="col-md-12">
+                <div class="card card-form">
                     <div class="card-body">
-                        <h2 class="text-center mb-4">Foto de perfil</h2>
+                        <h2 class="text-center mb-4">Perfil de {{ user.username }}</h2>
 
-                        <div id="etapa1">
-                            <div class="mb-3 d-flex justify-content-center">
-                                <div class="profile-picture">
-                                    <img src="{{ user.userprofile.get_foto_perfil }}" alt="Imagen de perfil"
-                                        class="img-fluid rounded-circle mb-3">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="card card-form-perfil profile-card">
+                                        <div class="card-body">
+                                            <h2 class="text-center mb-4">Foto de perfil</h2>
+
+                                            <div id="etapa1">
+                                                <div class="mb-3 d-flex justify-content-center">
+                                                    <div class="profile-picture">
+                                                        <img src="{{ user.userprofile.get_foto_perfil }}"
+                                                            alt="Imagen de perfil"
+                                                            class="img-fluid rounded-circle mb-3">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-center">
+                                                    {% if request.user.username == user.username %}
+                                                    <button id="editarFoto" class="btn btn-primary me-3">Editar foto de
+                                                        perfil</button>
+                                                    {% if user.is_superuser %}
+                                                    <a href="{% url 'admin:index' %}" class="btn btn-primary"
+                                                        target="_blank">ir al admin de
+                                                        django</a>
+                                                    {% endif %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+                                            <div id="etapa2" style="display: none;">
+                                                <form method="post" action="{% url 'usuarios:update_foto_perfil' %}"
+                                                    enctype="multipart/form-data" class="form-group">
+                                                    {% csrf_token %}
+                                                    <button type="submit" id="submitFoto" class="btn btn-primary w-50"
+                                                        disabled>Subir
+                                                        foto</button>
+                                                    <button type="button" id="cancelar"
+                                                        class="btn btn-danger">Cancelar</button>
+                                                    <div class="form-group">
+                                                        <input id="foto" type="file" name="profile_picture"
+                                                            class="form-control-file d-none">
+                                                        <button type="button" class="btn btn-warning"
+                                                            style="margin-top: 10px;">Seleccionar
+                                                            archivo</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card info-card card-form-perfil">
+                                        <div class="card-body">
+
+                                            <div id="infoEtapa1">
+                                                <h3 class="text-center mb-4">Información del Perfil</h3>
+                                                <p class="large-text"><strong>Usuario:</strong> {{ user.username }}</p>
+                                                <p class="large-text"><strong>Nombre:</strong> {{ user.first_name }}</p>
+                                                <p class="large-text"><strong>Apellido:</strong> {{ user.last_name }}
+                                                </p>
+                                                <p class="large-text"><strong>Email:</strong> {{ user.email }}</p>
+                                                {% if request.user.username == user.username %}
+                                                <button id="botonEditar" type="button" class="btn btn-primary w-100"
+                                                    style="margin-top: 10px;">Editar Información</button>
+                                                {% endif %}
+                                            </div>
+
+                                            <div id="infoEtapa2" style="display: none;">
+                                                <h3 class="text-center mb-4">Editar Información</h3>
+                                                <a href="{% url 'usuarios:editar_nombre' %}"
+                                                    class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar
+                                                    Nombre</a>
+                                                <a href="{% url 'usuarios:editar_email' %}"
+                                                    class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar
+                                                    Email</a>
+                                                <a href="{% url 'usuarios:editar_contraseña' %}"
+                                                    class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar
+                                                    Contraseña</a>
+                                                <a href="{% url 'usuarios:editar_usuario' %}"
+                                                    class="btn btn-primary w-100" style="margin-top: 10px;">Cambiar
+                                                    Usuario</a>
+                                                <button id="botonCancelar" type="button" class="btn btn-danger"
+                                                    style="margin-top: 10px;">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-center">
-                                <button id="editarFoto" class="btn btn-primary me-3">Editar foto de perfil</button>
-                                {% if user.is_superuser %}
-                                <a href="{% url 'admin:index' %}" class="btn btn-primary" target="_blank">ir al admin de
-                                    django</a>
-                                {% endif %}
-                            </div>
                         </div>
 
-                        <div id="etapa2" style="display: none;">
-                            <form method="post" action="{% url 'usuarios:update_foto_perfil' %}"
-                                enctype="multipart/form-data" class="form-group">
-                                {% csrf_token %}
-                                <button type="submit" id="submitFoto" class="btn btn-primary w-50" disabled>Subir
-                                    foto</button>
-                                <button type="button" id="cancelar" class="btn btn-danger">Cancelar</button>
-                                <div class="form-group">
-                                    <input id="foto" type="file" name="profile_picture" class="form-control-file d-none"
-                                        onchange="checkFile()">
-                                    <button type="button" class="btn btn-warning" style="margin-top: 10px;"
-                                        onclick="document.getElementById('foto').click()">Seleccionar archivo</button>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card info-card card-form">
-                    <div class="card-body">
-
-                        <div id="infoEtapa1">
-                            <h3 class="text-center mb-4">Información del Perfil</h3>
-                            <p><strong>Usuario:</strong> {{ user.username }}</p>
-                            <p><strong>Nombre:</strong> {{ user.first_name }}</p>
-                            <p><strong>Apellido:</strong> {{ user.last_name }}</p>
-                            <p><strong>Email:</strong> {{ user.email }}</p>
-                            <button type="button" class="btn btn-primary w-100" style="margin-top: 10px;"
-                                onclick="mostrarEtapa2()">Editar Información</button>
-                        </div>
-
-                        <div id="infoEtapa2" style="display: none;">
-                            <h3 class="text-center mb-4">Editar Información</h3>
-                            <a href="{% url 'usuarios:editar_nombre' %}" class="btn btn-primary w-100"
-                                style="margin-top: 10px;">Cambiar Nombre</a>
-                            <a href="{% url 'usuarios:editar_email' %}" class="btn btn-primary w-100"
-                                style="margin-top: 10px;">Cambiar Email</a>
-                            <a href="{% url 'usuarios:editar_contraseña' %}" class="btn btn-primary w-100"
-                                style="margin-top: 10px;">Cambiar Contraseña</a>
-                            <a href="{% url 'usuarios:editar_usuario' %}" class="btn btn-primary w-100"
-                                style="margin-top: 10px;">Cambiar Usuario</a>
-                            <button type="button" class="btn btn-danger" style="margin-top: 10px;"
-                                onclick="mostrarEtapa1()">Cancelar</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -87,9 +116,48 @@
     </div>
 </section>
 
-
-
-
+<section class="card-section gradient-custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card card-form">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Noticias Publicadas</h2>
+                        <div class="row">
+                            {% for noticia in noticias %}
+                            <div class="col-md-4">
+                                <div class="card mb-4">
+                                    <div class="imagen-noticia-container">
+                                        <img class="imagen-noticia" src="{{ noticia.imagen.url }}"
+                                            alt="Imagen de la noticia">
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-title"><a
+                                                href="{% url 'noticias:detalle_noticia' noticia.pk %}">
+                                                <b><u>{{noticia.titulo}}</u></b></a></h2>
+                                    </div>
+                                    <div class="card-footer">
+                                        Publicado el {{ noticia.creado }}
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            {% if request.user.username == user.username %}
+                            <p class="large-text text-center">Aun no publicaste ninguna noticia, puedes ir al <a
+                                    href="{% url 'noticias:cargar_noticia' %}"><b><u>apartado de cargar noticias</u></b></a> si
+                                deseas
+                                crear una.</p>
+                            {% else %}
+                            <p class="large-text text-center">Este usuario aún no ha publicado ninguna noticia.</p>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock content %}
 
