@@ -15,9 +15,8 @@ from apps.noticias.models import Noticia
 def Agregar_Comentario(request, pk):
     texto = request.POST.get('comentario', None)
 
-    # Verificar si el comentario está vacío o contiene solo espacios en blanco
     if not texto or not texto.strip():
-        mensaje = "El comentario no puede estar vacío"
+        mensaje = "¡Ups! Parece que olvidaste escribir tu comentario. Por favor, asegúrate de ingresar un comentario válido antes de enviarlo."
         return HttpResponse(f'<p>{mensaje}</p><p><a href="{reverse_lazy("noticias:detalle_noticia", kwargs={"pk": pk})}">Volver al detalle de noticias</a></p>')
 
     noticia = Noticia.objects.get(pk=pk)
