@@ -52,7 +52,7 @@
                                 alt="Imagen de perfil" class="img-fluid rounded-circle minifoto-navbar">
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="{% url 'usuarios:perfil' request.user.username %}">Ir a Mi perfil</a></li>
+                        {% comment %}    <li><a class="dropdown-item" href="{% url 'usuarios:perfil' request.user.username %}">Ir a Mi perfil</a></li> {% endcomment %}
                             <li><a class="dropdown-item" href="{% url 'usuarios:logout' %}">Logout</a></li>
                         </ul>
                     </div>
@@ -89,7 +89,7 @@
                         <span>{{ request.user.username }}</span>
                     </div>
                     <div>
-                        <a class="btn btn-primary me-2" href="{% url 'usuarios:perfil' request.user.username %}">Ir a Mi perfil</a>
+                        {% comment %}    <a class="btn btn-primary me-2" href="{% url 'usuarios:perfil' request.user.username %}">Ir a Mi perfil</a> {% endcomment %}
                         <a class="btn btn-secondary" href="{% url 'usuarios:logout' %}">Logout</a>
                     </div>
                 </div>
@@ -107,8 +107,8 @@
             <div>
                 <a href="{% url 'home' %}" class="nav-menu-item"><i class="fas fa-home me-3"></i>Home</a>
                 <a href="{% url 'noticias:home_noticias' %}" class="nav-menu-item me-3"><i class="fa-solid fa-newspaper me-3"></i>Noticias</a>
-                <a href="{% url 'contactos:contacto' %}" class="nav-menu-item"><i class="fa-solid fa-envelope me-3"></i></i>Contacto</a>
-                <a href="{% url 'about' %}" class="nav-menu-item"><i class="fas fa-circle-info me-3"></i>Acerca de</a>
+              {% comment %}  <a href="{% url 'contactos:contacto' %}" class="nav-menu-item"><i class="fa-solid fa-envelope me-3"></i></i>Contacto</a>
+                <a href="{% url 'about' %}" class="nav-menu-item"><i class="fas fa-circle-info me-3"></i>Acerca de</a> {% endcomment %}
             </div>
         </div>
 

@@ -35,35 +35,35 @@
 }
 
 .card-frame {
-    width: 200%;
-    max-width: 1600px;
+    max-width: 1000px;
     margin: 0px auto;
     border: 0px solid #000;
     box-shadow: 0 0 12px 0 rgba(172, 170, 170, 0.2), 0 0 12px 0 rgba(172, 170, 170, 0.2), 0 0 12px 0 rgba(223, 221, 221, 0.2), 0 0 12px 0 rgba(153, 150, 150, 0.2);
     box-sizing: border-box;
     padding: 0px;
-    margin-top: 20px;
+    margin-top: 40px;
     text-align: center;
     background-color: #fff;
-    border-radius: 15px
+    border-radius: 15px;
+    text-align: center
 }
 
 .card-frame2 {
-    width: 200%;
-    max-width: 1600px;
+    max-width: 1000px;
     margin: 0px auto;
     border: 0px solid #000;
-    box-shadow: 0 0 12px 0 rgba(172, 170, 170, 0.2), 0 0 12px 0 rgba(172, 170, 170, 0.2), 0 0 12px 0 rgba(223, 221, 221, 0.2), 0 0 12px 0 rgba(153, 150, 150, 0.2);
     box-sizing: border-box;
     padding: 0px;
     margin-top: 0px;
+    margin-bottom: 0px;
     text-align: center;
     background-color: #fff;
-    border-radius: 15px
+    border-radius: 20px;
 }
 
 .card-frame h1 {
-    margin-bottom: 50px;
+    padding-bottom: 50px;
+    color: rgba(32, 124, 147, 1);
 }
 
 .link {
@@ -80,12 +80,30 @@ section {
 
 .gradient-custom {
     /* fallback for old browsers */
-    background: #6a11cb;
+    background: #0a6abe;
 
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    background: -webkit-linear-gradient(to right, rgb(103, 153, 134), rgb(103, 153, 134));
 
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    background: linear-gradient(to right, rgb(0, 139, 139), rgb(0, 139, 139))
 }
 
+.body-home {
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.header {
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    color: #207c93;
+    text-shadow: 2px 2px 4px rgba(45, 104, 133, 0.618);
+}

@@ -12,10 +12,10 @@
 
 {% block content %}
 
-<section class="gradient-custom">
+<section class="body-home gradient-custom pt-4 pb-4">
     <div class="card-frame2">
-        <h1>ÚLTIMAS NOTICIAS</h1>
-        <div class="card-container">
+        <h1 class="header"> ÚLTIMAS NOTICIAS</h1>
+        <div class="card-container mt-4">
 
             {% for noticia in home_principal_n %}
             {% if forloop.counter <= 4 %} <div class="card">
@@ -33,14 +33,14 @@
             {% endif %}
             {% endfor %}
     </div>
-        
+    
     <!-- categorías -->
 
-    <section>
-        {% for categoria, noticias in noticias_por_categoria.items %}
+    
+       {% for categoria, noticias in noticias_por_categoria.items %}
         <div class="card-frame">
             <h2>{{ categoria.nombre }}</h2>
-            <div class="card-container">
+            <div class="card-container mt-3">
                 {% for noticia in noticias %}
                 <div class="card">
                     <a href="{% url 'noticias:detalle_noticia' noticia.pk %}" class="detalle_noticia link">
@@ -54,8 +54,8 @@
                 {% endfor %}
             </div>
         </div>
-        {% endfor %}
-    </section>
+        {% endfor %} 
+    
 </section>
 
 {% endblock content %}
