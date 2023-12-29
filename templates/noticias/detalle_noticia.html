@@ -2,12 +2,9 @@
 
 {% load static %}
 
-{% block titulo %}
-    {{ noticia.titulo }}
-{% endblock titulo %}
-
 {% block estilos %}
 
+<link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
 <link rel="stylesheet" href="{% static 'css/comentario.css' %}">
 
 {% endblock estilos %} 
@@ -22,43 +19,45 @@
         <h2 class="card-title">{{ noticia.titulo }}</h2>
         <p class="card-text">{{ noticia.contenido }}</p>
     </div>
-    {% if user.is_authenticated and noticia.usuario_id == user.id or user.is_staff %}
+    {% if user.is_authenticated and noticia.usuario == user %}
         <a href="{% url 'noticias:modificar_noticia' noticia.pk %}" class="btn btn-primary w-25" style="margin-top: 10px;">Editar</a>
         <a href="{% url 'noticias:borrar_noticia' noticia.pk %}" class="btn btn-danger w-25" style="margin-top: 10px; margin-bottom: 10px">Borrar</a>
-    {% endif %} 
+    {% endif %}
     <div class="card-footer text-muted">
         {% if noticia.modificado %}
             {% if noticia.modificado != noticia.creado %}
-                Modificado el {{ noticia.modificado }} por 
-                <a href="{% url 'usuarios:perfil' username=noticia.usuario.username %}">
-                    {{ noticia.usuario }}
-                </a>
+                Modificado el {{ noticia.modificado }} por {{ noticia.usuario }}
             {% else %}
-                Publicado el {{ noticia.creado }} por 
-                <a href="{% url 'usuarios:perfil' username=noticia.usuario.username %}">
-                    {{ noticia.usuario }}
-                </a>
+                Publicado el {{ noticia.creado }} por {{ noticia.usuario }}
             {% endif %}
         {% else %}
-            Publicado el {{ noticia.creado }} por 
-            <a href="{% url 'usuarios:perfil' username=noticia.usuario.username %}">
-                {{ noticia.usuario }}
-            </a>
-        {% endif %}
+            Publicado el {{ noticia.creado }} por {{ noticia.usuario }}
+        {% endif %} 
     </div>
 </div> 
+
 <div class="comentarios1 mb-4">
     <h2 class="card-header">COMENTARIOS</h2>
+    
+    {% if request.user.is_authenticated %}
+        <div class="card-footer">
+            <form method="POST" action="{% url 'comentarios:agregar' noticia.pk %}">{% csrf_token %}
+                <textarea name="comentario" class="form-control" placeholder="Escribe tu comentario"></textarea>
+                <button type="submit" class="btn btn-primary mt-2">COMENTAR</button>
+            </form>
+        </div>
+    {% endif %}
+    
     <div class="card-body">
         {% for c in comentarios %}
             <div class="comment-container mb-2">
                 <div class="comentario1 sangria1">
                     <div class="comment-content">
-                        <div class="foto-botonera" > <!-- Ajusta el valor del margen según tus preferencias -->
+                        <div class="foto-botonera" > 
                             <img src="{{ c.usuario.userprofile.get_foto_perfil }}" alt="Foto de perfil" class="foto-comentario">
                         </div>
                         <div style="padding-left: 20px;">
-                            <h5><a href="{% url 'usuarios:perfil' username=c.usuario.username %}">{{ c.usuario }}</a></h5>
+                            <h5><a href="{% url 'usuarios:perfil' username=c.usuario.username %}">{{ c.usuario.username }}</a></h5>
                             <div class="card mb-2 comentario-texto">
                                 <div class="card-body texto1">
                                     <p>{{ c.texto }}</p>
@@ -66,6 +65,8 @@
                             </div>
                             {% if c.modificado > c.creado %}
                                 <p class="modificado">(Editado en {{ c.modificado }})</p>
+                            {% else %}
+                                <p class="creado" style="opacity: 0.8;">Publicado el {{ c.creado }} por {{ c.usuario }}</p>
                             {% endif %}
                             {% if request.user == c.usuario or request.user.is_staff %}
                                 <div class="botonera">
@@ -79,15 +80,8 @@
             </div>
         {% endfor %}
     </div>
-    {% if request.user.is_authenticated %}
-        <div class="card-footer">
-            <form method="POST" action="{% url 'comentarios:agregar' noticia.pk %}">{% csrf_token %}
-                <textarea name="comentario" class="form-control" placeholder="Escribe tu comentario"></textarea>
-                <button type="submit" class="btn btn-primary mt-2">COMENTAR</button>
-            </form>
-        </div>
-    {% endif %}
 </div>
+
 
 
 
