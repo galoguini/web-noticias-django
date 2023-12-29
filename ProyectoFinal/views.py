@@ -10,7 +10,7 @@ class HomeView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         categorias = Categoria.objects.all()
-        noticias_por_categoria = {categoria: Noticia.objects.filter(categoria=categoria)[:2] for categoria in categorias}
+        noticias_por_categoria = {categoria: Noticia.objects.filter(categoria=categoria)[:4] for categoria in categorias}
         context['noticias_por_categoria'] = noticias_por_categoria
         return context
 

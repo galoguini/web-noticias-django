@@ -22,7 +22,6 @@
                 <a href="{% url 'noticias:detalle_noticia' noticia.pk %}" , views.Detalle_noticia,
                     class="detalle_noticia link">
                     <h2>{{ noticia.titulo }}</h2>
-                    <p>{{ noticia.contenido }}</p>
                     {% if noticia.imagen %}
                     <img src="{{ noticia.imagen.url }}" alt="{{ noticia.titulo }}">
                     {% endif %}
