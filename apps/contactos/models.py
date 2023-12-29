@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 # Create your models here.
 
-class Contactos(models.Model):
+class Contacto(models.Model):
     nombre_apellido =models.CharField(max_length=120)
     email = models.EmailField()
     asunto = models.CharField(max_length=50)
@@ -12,4 +12,6 @@ class Contactos(models.Model):
     def __str__(self):
         return self.nombre_apellido
     
-    
+    class Meta:
+        verbose_name = 'Contacto'
+        verbose_name_plural = 'Contactos'

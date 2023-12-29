@@ -16,7 +16,7 @@ class Comentario(models.Model):
     usuario = models.ForeignKey(User, on_delete = models.CASCADE)
     noticia = models.ForeignKey(Noticia, on_delete = models.CASCADE)
     modificado = models.DateTimeField(auto_now=True, null=True, blank=True)
+
     def __str__(self):
         return self.texto
-    
-    
+
